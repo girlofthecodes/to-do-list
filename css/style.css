@@ -124,25 +124,11 @@ body {
         width: 70%;
     }
 
-    .completed_task {color: grey;}
-    .disabled_btns button ion-icon {color: grey;}
-    .delete_btn {display:none;}
-
-    /*Se gregaron estas lineas de codigo para agregar swipe*/
-    .all_task.swiped .edit_btn, 
-    .all_task.swiped .completed_btn {
-        display: none;
-    }
-
-    .all_task.swiped .delete_btn {
-        display: block;
-    }
-    /**/
+    .completed_task, .disabled_btns button ion-icon {color: grey;}
 
     .btn {
         display: flex;
-        gap: 10px; /* Espacio entre botones */
-        align-items: center;
+        justify-content: space-between;
         width: 30%;
     }
     .btn button {

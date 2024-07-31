@@ -1,15 +1,23 @@
-let tasks = [
-    new Task('Programar0', 'Hoy me toca programar 6 horas0', '2024-06-26', '00:00'), 
-    new Task('Programar1', 'Hoy me toca programar 6 horas1', '2024-07-30', '00:10'),
-    new Task('Programar2', 'Hoy me toca programar 6 horas2', '2024-07-10', '00:20'),
-    new Task('Programar3', 'Hoy me toca programar 6 horas3', '2024-08-01', '00:30'),
-    new Task('Programar4', 'Hoy me toca programar 6 horas4', '2024-08-02', '00:40'),
-    new Task('Programar5', 'Hoy me toca programar 6 horas5', '2024-08-03', '00:50'),
-]; 
+let tasks = []; 
+
+//Lee el archivo CSV que guardara los elementos que necesito
+async function loadTasksCSV(){
+    try {
+        const response = await fetch('/js/tasks.csv');
+        const csvText = await response.text();
+        const results = Papa.parse(csvText, {
+            header: true,
+            dynamicTyping: true
+        });
+        tasks = results.data.map(row => new Task(row._task, row._detail, row._date, row._time));
+        console.log('Tasks loaded:', tasks);
+    } catch (error) {
+        console.error('Error al cargar el archivo CSV:', error);
+    }
+}; 
 
 //DATE------
 date = new Date();
-console.log(date);
 const day = ['Sun', 'Mon', 'Tues', 'Wed', 'Thu', 'Fri', 'Sat']
 
 let year = date.getFullYear()
@@ -17,6 +25,11 @@ let month = date.getMonth()
 month = months[month]; 
 
 let dayNumber = date.getDay(); 
+
+document.addEventListener('DOMContentLoaded', async () => {
+    await loadTasksCSV(); // Espera a que las tareas se carguen
+    loadApp(); // Luego llama a loadApp
+}); 
 
 let loadApp = () => {
     loadList(); 
@@ -59,7 +72,6 @@ let beforeDate = () => {
 //Fecha actual 
 let nowDate = () => {
     let now_date = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-    console.log(now_date);
     let n_dayN = day[dayNumber];
     let n_day = formatDay(now_date.getDate())
     let n_month = months[now_date.getMonth()]
@@ -72,8 +84,6 @@ let nowDate = () => {
 //Fecha de mañana
 let afterDate = () => {
     let after_date = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1);
-    console.log(after_date)
-    console.log('Date '+date.getHours())
     let a_dayN = after_date.getDay();
     a_dayN = day[a_dayN];
     let a_day = formatDay(after_date.getDate());
@@ -96,7 +106,6 @@ const createItemList = (task, index) => {
             <div class="btn">
                 <button class="edit_btn"><ion-icon name="create-outline"></ion-icon></button>
                 <button class="completed_btn"><ion-icon name="checkmark-circle-outline"></ion-icon></button>
-                <button class="delete_btn"><ion-icon name="trash-outline"></ion-icon></button>
             </div>
         </div>
     `; 
@@ -105,6 +114,7 @@ const createItemList = (task, index) => {
 
 //Crea la lista de tareas que hay registradas
 const loadList = () => {
+    console.log(tasks);
     let taskHTML = "";
     for(let task of tasks){
         index = task._id; 
@@ -141,59 +151,68 @@ const timeLeft = () => {
 const updateTask = (taskID) => {
     const index = parseInt(taskID);
     const update_task = tasks[index-1];
-    console.log(update_task); 
+    console.log('update: ', update_task); 
 };
 
 const completeTask = () => {
-    const btns = document.querySelectorAll('.completed_btn'); 
-    btns.forEach(btn => {
+    const btn_completed = document.querySelectorAll('.completed_btn'); 
+    btn_completed.forEach(btn => {
         btn.addEventListener('click', (event) => {
             const taskContainer = event.target.closest('.all_task');
             const div_btn = taskContainer.querySelector('.btn'); 
+            const btn_edit = taskContainer.querySelector('.edit_btn');
             if(div_btn){
-                div_btn.classList.add('disabled_btns')
-            }
-            taskContainer.classList.add('completed_task');
+                div_btn.classList.toggle('disabled_btns'); 
+                if(div_btn.classList.contains('disabled_btns')){
+                    btn_edit.classList.add('trash_btn');
+                    btn_edit.innerHTML = '<ion-icon name="trash-outline"></ion-icon>'; 
+                    deleteTask();
+                } else {
+                    btn_edit.classList.remove('trash_btn');
+                    btn_edit.innerHTML = '<ion-icon name="create-outline"></ion-icon>';
+                };
+            };
+            taskContainer.classList.toggle('completed_task');
         });
     });
 };
 
 const editTask = () => {
-    const btns = document.querySelectorAll('.edit_btn');
-    btns.forEach(btn => {
+    const btn_edit = document.querySelectorAll('.edit_btn');
+    btn_edit.forEach(btn => {
         btn.addEventListener('click', (event) => {
             const taskContainer = event.target.closest('.all_task');
-            if(taskContainer.classList.contains('completed_task')){
-                btn.disabled = true;
-                console.log("boton deshanilitado");
+            if(btn.classList.contains('edit_btn', 'trash_btn')){
+                deleteTask();
             } else {
                 updateTask(taskContainer.id);
-                console.log("boton habilitado");
-            }
+            };
         });
     });
 }; 
 
-//Probar en deploy 
-document.querySelectorAll('.all_task').forEach(task => {
-    let startX;
-
-    task.addEventListener('touchstart', (e) => {
-        startX = e.touches[0].clientX;
-    });
-
-    task.addEventListener('touchend', (e) => {
-        const endX = e.changedTouches[0].clientX;
-        const diffX = startX - endX;
-
-        if (diffX > 50) { // Ajusta este valor según la sensibilidad deseada
-            task.classList.add('swiped');
-        } else if (diffX < -50) {
-            task.classList.remove('swiped');
-        }
-    });
-});
-
+const deleteTask = () => {
+    btn_delete = document.querySelectorAll('.trash_btn');
+    btn_delete.forEach(btn => {
+        btn.addEventListener('click', async (event) => {
+            const taskContainer = event.target.closest('.all_task');
+            const id_task = parseInt(taskContainer.id); 
+            let delete_task = tasks.findIndex(task => task._id === id_task);
+            if(delete_task > -1){
+                tasks.splice(delete_task, 1); 
+                try {
+                    await fetch(`/tasks/${id_task}`, {
+                        method: 'DELETE'
+                    });
+                    loadApp(); // Vuelve a cargar la aplicación
+                } catch (error) {
+                    console.error('Error al eliminar la tarea:', error);
+                }
+            }
+            //loadApp();
+        });
+    }); 
+}; 
 
 const addTask = () => {
     //Redirecciona a sendTask para agregar la tarea 
