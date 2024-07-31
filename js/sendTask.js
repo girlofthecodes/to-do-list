@@ -11,8 +11,8 @@ let calendar = document.querySelector('#calendar');
 
 
 let date = new Date(); 
-let currYear = date.getUTCFullYear(); 
-let currMonth = date.getUTCMonth(); 
+let currYear = date.getFullYear(); 
+let currMonth = date.getMonth(); 
 
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -51,10 +51,10 @@ function OnInput() {
 }
 
 const renderCalendar = () => {
-    let firstDayOfMonth = new Date(currYear, currMonth, 1).getUTCDay(); //Dias del mes segun el numero dado de la semana
-    let lastDateOfMonth = new Date(currYear, currMonth + 1, 0).getUTCDate(); //Ultimo dia del mes actual 
-    let lastDateOfLastMonth = new Date(currYear, currMonth, 0).getUTCDate(); //Ultimo(s) dias del mes pasado
-    let nextDaysOfMonth = new Date(currYear, currMonth,  lastDateOfMonth).getUTCDay(); //Dias del proximo mes     
+    let firstDayOfMonth = new Date(currYear, currMonth, 1).getDay(); //Dias del mes segun el numero dado de la semana
+    let lastDateOfMonth = new Date(currYear, currMonth + 1, 0).getDate(); //Ultimo dia del mes actual 
+    let lastDateOfLastMonth = new Date(currYear, currMonth, 0).getDate(); //Ultimo(s) dias del mes pasado
+    let nextDaysOfMonth = new Date(currYear, currMonth,  lastDateOfMonth).getDay(); //Dias del proximo mes     
     let liTag = ""; 
     let liDay = "";
     
@@ -71,10 +71,10 @@ const renderCalendar = () => {
     //Dias correspondientes a cada mes 
     for (let i = 1; i <= lastDateOfMonth; i++) {
         let isToday; 
-        if (i === date.getUTCDate() && currMonth === new Date().getUTCMonth() 
-            && currYear === new Date().getUTCFullYear()) {
+        if (i === date.getDate() && currMonth === new Date().getMonth() 
+            && currYear === new Date().getFullYear()) {
             isToday = "active";
-        } else if(currMonth === new Date().getUTCMonth() && i < date.getUTCDate() && currYear === new Date().getUTCFullYear()){
+        } else if(currMonth === new Date().getMonth() && i < date.getDate() && currYear === new Date().getFullYear()){
             isToday = "inactive";
         }
         liTag += `<li class="${isToday}">${i}</li>`;
@@ -84,8 +84,8 @@ const renderCalendar = () => {
         liTag += `<li class="inactive">${i - nextDaysOfMonth + 1}</li>`
     }
 
-    if(currMonth <= new Date().getUTCMonth() && currYear <= new Date().getUTCFullYear() 
-        || currMonth > new Date().getUTCMonth() && currYear < new Date().getUTCFullYear()){
+    if(currMonth <= new Date().getMonth() && currYear <= new Date().getFullYear() 
+        || currMonth > new Date().getMonth() && currYear < new Date().getFullYear()){
         currentDate.classList.add('inactiveMonth');
     } else {
         currentDate.classList.remove('inactiveMonth'); 
@@ -111,8 +111,8 @@ prevNextIcon.forEach(icon => {
 
         if(currMonth < 0 || currMonth > 11){
             date = new Date(currYear, currMonth);
-            currMonth = date.getUTCMonth();
-            currYear = date.getUTCFullYear(); 
+            currMonth = date.getMonth();
+            currYear = date.getFullYear(); 
         } else {
             date = new Date(); 
         }

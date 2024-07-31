@@ -9,13 +9,14 @@ let tasks = [
 
 //DATE------
 date = new Date();
+console.log(date);
 const day = ['Sun', 'Mon', 'Tues', 'Wed', 'Thu', 'Fri', 'Sat']
 
-let year = date.getUTCFullYear()
-let month = date.getUTCMonth()
+let year = date.getFullYear()
+let month = date.getMonth()
 month = months[month]; 
 
-let dayNumber = date.getUTCDay(); 
+let dayNumber = date.getDay(); 
 
 let loadApp = () => {
     loadList(); 
@@ -44,11 +45,11 @@ const formatDay = (day)=>{
 
 //Fecha anterior
 let beforeDate = () => {
-    let before_date = new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate() - 1);
-    let b_dayN = before_date.getUTCDay();
+    let before_date = new Date(date.getFullYear(), date.getMonth(), date.getDate() - 1);
+    let b_dayN = before_date.getDay();
     b_dayN = day[b_dayN];
-    let b_day = formatDay(before_date.getUTCDate());
-    let b_month = months[before_date.getUTCMonth()];
+    let b_day = formatDay(before_date.getDate());
+    let b_month = months[before_date.getMonth()];
 
     document.getElementById('dayNameB').innerHTML = b_dayN;
     document.getElementById('dayNumberB').innerHTML = b_day; 
@@ -57,7 +58,8 @@ let beforeDate = () => {
 
 //Fecha actual 
 let nowDate = () => {
-    let now_date = new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate());
+    let now_date = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    console.log(now_date);
     let n_dayN = day[dayNumber];
     let n_day = formatDay(now_date.getDate())
     let n_month = months[now_date.getMonth()]
@@ -70,10 +72,12 @@ let nowDate = () => {
 //Fecha de mañana
 let afterDate = () => {
     let after_date = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1);
-    let a_dayN = after_date.getUTCDay();
+    console.log(after_date)
+    console.log('Date '+date.getHours())
+    let a_dayN = after_date.getDay();
     a_dayN = day[a_dayN];
-    let a_day = formatDay(after_date.getUTCDate());
-    let a_month = months[after_date.getUTCMonth()];
+    let a_day = formatDay(after_date.getDate());
+    let a_month = months[after_date.getMonth()];
 
     document.getElementById('dayNameA').innerHTML = a_dayN;
     document.getElementById('dayNumberA').innerHTML = a_day; 
@@ -114,7 +118,7 @@ const timeLeft = () => {
     task_date = document.querySelectorAll('.task_date');
     for(let td of task_date){
         let due_date = new Date(td.innerHTML).getTime(); 
-        let current_date = `${new Date().getUTCFullYear()}-${new Date().getUTCMonth()+1}-${new Date().getUTCDate()}`; 
+        let current_date = `${new Date().getFullYear()}-${new Date().getMonth()+1}-${new Date().getDate()}`; 
         current_date = new Date(current_date).getTime(); 
         if(due_date < current_date){
             td.classList.add('due_date');
