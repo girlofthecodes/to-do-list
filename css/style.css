@@ -1,0 +1,385 @@
+:root {
+    --font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif; 
+    --color: white; 
+    --main-color: #7442EC; 
+    --primary-color: rgb(214, 202, 243); 
+    --secundary-color: rgba(249, 211, 217, 0.5);
+
+    --font-size: 14px;
+}
+
+* {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0); /*Quita el recuadro azul al hacer click*/
+    margin: 0; 
+    padding: 0; 
+}
+
+body {
+    height: 100vh;
+    width: 100%;
+    font-family: var(--font-family);
+    position: relative; 
+    font-weight: 400;
+    background-color: black;
+}
+
+
+@media (min-width:300px) {
+    /*index.html*/
+    #container-app {
+        color: white;
+    }
+
+    .header {
+        height: 50vh;
+        display: relative; 
+    }
+
+    .title {
+        background-color: var(--color);
+        text-align: center;
+        border-radius: 15px;
+        width: 300px;
+        margin: 80px auto 20px;
+    }
+
+    .title h2 { 
+        color: black;
+        font-size: 20px; 
+        text-transform: capitalize; 
+        letter-spacing: 7px;
+    }
+
+    .short_date {
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 5px; 
+        color: var(--main-color); 
+        margin: 20px auto;
+    }
+
+    #month {
+        margin: 10px 0;
+    }
+
+    .date {
+        display: flex;
+        justify-content:  space-between;
+        flex-direction: row;
+        margin: 0 auto; 
+        width: 300px;
+    }
+
+    .item { 
+        width: 30%;
+        height: 25vh;
+        border-radius: 20px;
+        text-align: center; 
+        background-color: var(--color);
+        color: black;
+        position: relative;
+    }
+
+    .description {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);    
+        text-transform: uppercase;
+    }
+
+
+    .dayNumber {
+        font-size: 50px;
+    }
+
+    #now{
+        font-weight: bold;
+        font-size: 15px;
+        position: absolute;
+        top: 140px;
+        left: 30px; 
+    
+    }
+
+    /*List Task*/
+    #container_item_task {
+        display: block; 
+    }
+
+    .all_task {
+        color: white;
+        display: flex;
+        margin: 30px auto; 
+        width: 300px;
+    }
+
+    .due_date {
+        color: var(--secundary-color)
+    }
+
+    .item_list {
+        font-size: var(--font-size);
+        width: 70%;
+    }
+
+    .completed_task {color: grey;}
+    .disabled_btns button ion-icon {color: grey;}
+    .delete_btn {display:none;}
+
+    /*Se gregaron estas lineas de codigo para agregar swipe*/
+    .all_task.swiped .edit_btn, 
+    .all_task.swiped .completed_btn {
+        display: none;
+    }
+
+    .all_task.swiped .delete_btn {
+        display: block;
+    }
+    /**/
+    
+    .btn {
+        display: flex;
+        gap: 10px; /* Espacio entre botones */
+        align-items: center;
+        width: 30%;
+    }
+    .btn button {
+        background-color: transparent;
+        border: none; 
+    }
+
+    .btn ion-icon {
+        color:#D6CAF3;
+        font-size: 25px;
+        margin: 5px;
+    }
+
+    .add--btn{
+        cursor: pointer; 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .add {
+        background-color: var(--main-color);
+        border-radius: 50%;
+        display: flex; 
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 50px;
+        margin-bottom: 20px;
+        border: none;  
+    }
+
+    .add ion-icon {
+        color: var(--color); 
+        font-size: 30px;
+    }
+
+
+
+    /*task.html*/
+    #container-send_task {
+        display: flex; 
+        justify-content: center;
+        height: 100vh;
+        color: white; 
+    }
+
+    .container {
+        width: 300px;
+        height: 500px;
+    }
+    
+    .div_father { margin: 20px auto;}
+
+    /*Task + Details*/
+    #container_task, #container_detail {
+        display: inline-block;
+        width: 280px;
+        margin: 10px auto;
+    }
+
+    #container_task label, #container_detail label {
+        display: block; 
+        margin: 10px auto; 
+        font-weight: 600;
+        color:#7442EC;
+        text-align: center;
+    }
+    #detail {
+        resize: none;
+        overflow: hidden;
+        height: auto;
+    }
+
+    #task, #detail {
+        background-color: var(--color);
+        color: black; 
+        border-radius: 10px;
+        border: 0;
+        outline: none; 
+        width: 100%;
+        padding: 10px;
+    }
+
+    #calendar {
+        display: flex; 
+        justify-content: start;
+        align-items: center;
+        flex-direction: column;
+        height: 400px;
+        background-color: white;
+        color: black; 
+        border-radius: 10px;
+        padding: 20px;
+    }
+
+    .header_calendar {
+        display: flex; 
+        align-items: center;
+        justify-content: space-between;
+        width: 80%;
+        height: 20%;
+    }
+
+    .current_date {
+        font-size: 1.2rem;
+        font-weight: 700;
+    }
+
+    .header_calendar .icons span {
+        height: 38px;
+        width: 38px;
+        font-size: 1.9rem;
+
+        cursor: pointer; 
+        text-align: center;
+        line-height: 38px;
+        
+        z-index: 1;
+    }
+
+    .icons span:last-child { margin-left: 10px}
+
+    .icons ion-icon { 
+        width: 18px; 
+        height: 18px; 
+        color:#7442EC;
+    }
+
+    ul { list-style:none; }
+
+    .calendar ul {
+        display: flex; 
+        flex-wrap: wrap;
+        text-align: center;
+        font-size: 14px;
+    }
+
+    .calendar .days { margin-bottom: 20px;}
+
+    .calendar .weeks li {
+        font-weight: 600;
+    }
+
+    .calendar .days li{
+        z-index: 1;
+        cursor: pointer; 
+        margin-top: 30px;
+    }
+
+    .calendar ul li {
+        position: relative; 
+        width: calc(100%/7);
+    }
+    .days li.inactive {
+        color: #aaa;
+        pointer-events: none;
+    }
+
+    .calendar .days li::before {
+        position: absolute;
+        content:""; 
+        height: 30px;
+        width: 30px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        z-index: -1;
+        background-color: rgba(249, 211, 217, 0.5);
+    }
+
+    .days li:hover::before {
+        background-color: rgb(214, 202, 243);
+    }
+
+    .days li.active::before { background-color: #7442EC;}
+
+    .days li.active {color: white;}
+
+    /* .disabled {
+        pointer-events: none;
+    } */
+
+    /*clock*/
+    .clock-container {
+        position: relative;
+    }
+
+    .clock {
+        background-color: white;
+        color: black;
+        margin: 0 auto; 
+        border-radius: 10px;
+        display: flex; 
+        justify-content: space-between;
+        height: 150px;
+        overflow: hidden;
+    }
+
+    .time_all {
+        background-color: var(--color);
+        flex: 1;
+        height: 150px;
+        overflow-y: scroll;
+        scrollbar-width: none;
+        position: relative;
+    }
+
+    .clock ul {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        position: relative;
+    }
+
+    .clock li {
+        cursor: pointer;
+        padding: 10px 0;
+        text-align: center;
+        line-height: 30px;
+    }    
+
+    .time_all::-webkit-scrollbar {
+        width: 0;
+    }
+
+    .selected-time-box {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        transform: translateY(-50%);
+        height: 30px;
+        line-height: 30px;
+        background-color: rgba(214, 202, 243,0.5);
+        z-index: 1;
+    }
+
+    
+}

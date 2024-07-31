@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Task</title>
+</head>
+<body id="container-send_task" onload="loadTask()">
+    <div class="container">
+        <form name="myForm" method="post">
+            <div class="div_father">
+                <div id="container_task">
+                    <label name="task">Task</label>
+                    <textarea type="text" id="task" contenteditable="true"></textarea>
+                </div>
+                <div id="container_detail">
+                    <label name="detail">Detail</label>
+                    <textarea type="text" id="detail" contenteditable="true"></textarea>
+                </div>
+            </div>
+            <div class="div_father" id="calendar">
+                <div class="header_calendar">
+                    <p class="current_date"><!--Aqui va el mes actual junto con el año actual--></p>
+                    <div class="icons">
+                        <span id="prev"><ion-icon name="chevron-back-outline"></ion-icon></span>
+                        <span id="next"><ion-icon name="chevron-forward-outline"></ion-icon></span>
+                    </div>
+                </div>
+                <div class="calendar">
+                    <ul class="weeks">
+                        <!--Se añadiran los nombres de cada dia de la semana-->
+                    </ul>
+                    <ul class="days">
+                        <!--Se añadoran todos los dias del mes en <li></li>-->
+                    </ul>
+                </div>
+            </div>
+            <div class="div_father">
+                <div class="clock-container">
+                    <div class="clock">
+                        <div class="time_all">
+                            <ul class="hour">
+                                <!-- Hours will be generated dynamically -->
+                            </ul>
+                        </div>
+                        <div class="time_all">
+                            <ul class="minutes">
+                                <!-- Minutes will be generated dynamically -->
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="selected-time-box"></div>
+                </div>
+            </div>
+        </form>
+        <div class="add--btn">
+            <button type="submit" id="send_task" class="add" disabled>
+                <ion-icon name="checkmark-sharp"></ion-icon>
+            </button>
+        </div>
+    </div>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <script src="/js/Task.js"></script>
+    <script src="./js/sendTask.js"></script>
+    <script src="/js/app.js"></script>
+</body>
+</html>

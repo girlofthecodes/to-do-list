@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>To-Do List</title>
+</head>
+<body id="container-app" onload="loadApp()">
+    <div class="header">
+        <div class="title">
+            <h2>TO DO LIST</h2>
+        </div>
+        <div class="short_date">
+            <div class="year" id="year"></div>
+            <div class="month" id="month"></div>
+        </div>
+        <div class="date">
+            <div class="item">
+                <div class="description">
+                    <div class="dayName" id="dayNameB"><!--Day name--></div>
+                    <div class="dayNumber" id="dayNumberB"><!--Day number--></div>
+                    <div class="month" id="monthB"></div>
+                </div>
+            </div>
+            <div class="item" id="item-now">
+                <div class="description">
+                    <div class="dayName" id="dayName"><!--Day name--></div>
+                    <div class="dayNumber" id="dayNumber"><!--Day number--></div>
+                    <div class="months" id="monthN"></div>
+                </div>
+                <div class="now" id="now">today</div>
+                
+            </div>
+            <div class="item">
+                <div class="description">
+                    <div class="dayName" id="dayNameA"><!--Day name--></div>
+                    <div class="dayNumber" id="dayNumberA"><!--Day number--></div>
+                    <div class="month" id="monthA"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="container_item_task" >
+        <div class="all_task">
+            <div class="item_list">
+                <!--Se agregan los elementos creados en createItemList()-->
+            </div>
+            <div class="btn">
+                <!--Se agregaran los botones temporalmente aqui,pero se desea se agreguen desde js-->
+            </div>
+        </div>
+    </div>
+    <div class="add--btn">
+        <span onclick="addTask()" class="add"><ion-icon name="add-outline"></ion-icon></span>
+    </div>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    
+    <script src="/js/Task.js"></script>
+    <script src="./js/sendTask.js"></script>
+    <script src="/js/app.js"></script>
+</body>
+</html>
