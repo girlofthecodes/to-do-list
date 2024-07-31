@@ -1,9 +1,0 @@
-{
-    "workbench.activityBar.iconClickBehavior": "toggle",
-    "workbench.activityBar.location": "default",
-    "workbench.sideBar.location": "left",
-    "editor.inlineSuggest.showToolbar": "onHover",
-    "editor.suggest.showStatusBar": false,
-    "editor.scrollbar.vertical": "auto",
-    "workbench.statusBar.visible": true
-}
