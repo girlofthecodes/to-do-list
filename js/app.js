@@ -3,7 +3,7 @@ let tasks = [];
 //Lee el archivo CSV que guardara los elementos que necesito
 async function loadTasksCSV(){
     try {
-        const response = await fetch('/js/tasks.csv');
+        const response = await fetch('js/tasks.csv');
         const csvText = await response.text();
         const results = Papa.parse(csvText, {
             header: true,
