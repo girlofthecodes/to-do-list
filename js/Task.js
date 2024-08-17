@@ -1,10 +1,16 @@
 class Task{
     static taskCounter = 0;
-    constructor(task, detail, date, time){
-        this._id = ++Task.taskCounter; 
+    
+    constructor(task, detail, date, time, id = null) {
+        // Genera un nuevo ID solo si no se proporciona uno
+        if (id === null) {
+            this._id = ++Task.taskCounter;
+        } else {
+            this._id = id; // Usa el ID proporcionado para ediciones
+        }
         this._task = task;
         this._detail = detail;
-        this._date = date, 
+        this._date = date;
         this._time = time;
     }
 

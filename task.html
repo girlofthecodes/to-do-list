@@ -3,54 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
     <title>Task</title>
 </head>
-<body id="container-send_task" onload="loadTask()">
+<body id="container-send_task">
     <div class="container">
+        <button type="submit" id="return"><ion-icon name="arrow-back-outline"></ion-icon></button>
         <form name="myForm" method="post">
             <div class="div_father">
                 <div id="container_task">
-                    <label name="task">Task</label>
-                    <textarea type="text" id="task" contenteditable="true"></textarea>
+                    <label name="task">Heading</label>
+                    <textarea class="cont_textarea" type="text" id="task" contenteditable="true"></textarea>
                 </div>
                 <div id="container_detail">
-                    <label name="detail">Detail</label>
-                    <textarea type="text" id="detail" contenteditable="true"></textarea>
-                </div>
-            </div>
-            <div class="div_father" id="calendar">
-                <div class="header_calendar">
-                    <p class="current_date"><!--Aqui va el mes actual junto con el año actual--></p>
-                    <div class="icons">
-                        <span id="prev"><ion-icon name="chevron-back-outline"></ion-icon></span>
-                        <span id="next"><ion-icon name="chevron-forward-outline"></ion-icon></span>
-                    </div>
-                </div>
-                <div class="calendar">
-                    <ul class="weeks">
-                        <!--Se añadiran los nombres de cada dia de la semana-->
-                    </ul>
-                    <ul class="days">
-                        <!--Se añadoran todos los dias del mes en <li></li>-->
-                    </ul>
+                    <label name="detail">Details</label>
+                    <textarea class="cont_textarea" type="text" id="detail" contenteditable="true"></textarea>
                 </div>
             </div>
             <div class="div_father">
-                <div class="clock-container">
-                    <div class="clock">
-                        <div class="time_all">
-                            <ul class="hour">
-                                <!-- Hours will be generated dynamically -->
-                            </ul>
+                <div class="date-picker">
+                    <input type="text" id="date" readonly></input>
+                    <div id="container-calendar">
+                        <div class="header_calendar">
+                            <p class="current_date"><!--Aqui va el mes actual junto con el año actual--></p>
+                            <div class="icons">
+                                <span id="prev"><ion-icon name="chevron-back-outline"></ion-icon></span>
+                                <span id="next"><ion-icon name="chevron-forward-outline"></ion-icon></span>
+                            </div>
                         </div>
-                        <div class="time_all">
-                            <ul class="minutes">
-                                <!-- Minutes will be generated dynamically -->
+                        <div class="calendar">
+                            <ul class="weeks">
+                                <!--Se añadiran los nombres de cada dia de la semana-->
+                            </ul>
+                            <ul class="days">
+                                <!--Se añadiran todos los dias del mes en <li></li>-->
                             </ul>
                         </div>
                     </div>
-                    <div class="selected-time-box"></div>
+                </div>
+            </div>
+            <div class="div_father">
+                <div class="time-picker">
+                    <input type="text" id="time-display" readonly>
+                    <div class="time-popup" id="time-popup">
+                        <div id="container-list">
+                            <div class="time-list hours">
+                                <!-- Hours will be dynamically populated -->
+                            </div>
+                            <div class="time-list minutes">
+                                <!-- Minutes will be dynamically populated -->
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </form>
@@ -59,16 +63,14 @@
                 <ion-icon name="checkmark-sharp"></ion-icon>
             </button>
         </div>
+        
     </div>
-
+    
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
-    <script src="js/tasks.csv"></script>
-    <script src="js/server.js"></script>
-    
-    <script src="js/Task.js"></script>
-    <script src="js/sendTask.js"></script>
-    <script src="js/app.js"></script>
+    <script src="/js/Task.js"></script>
+    <script src="/js/sendTask.js"></script>
+    <script src="/js/app.js"></script>
 </body>
 </html>
