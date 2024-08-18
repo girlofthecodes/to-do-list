@@ -37,7 +37,7 @@ function loadApp() {
     deleteTask(); 
 
     document.getElementById('add_task').addEventListener('click', () => {
-        document.location.href = '/task'; 
+        document.location.href = '/task.html'; 
     });
 }
 
@@ -184,7 +184,7 @@ const editTask = () => {
 
 const updateTask = (taskID) => {
     const id = parseInt(taskID);
-    document.location.href = `/task?id=${id}`; //Redirige la tarea por medio del id que se quiere editar 
+    document.location.href = `/task.html?id=${id}`; //Redirige la tarea por medio del id que se quiere editar 
 };
 
 const deleteTask = () => {
