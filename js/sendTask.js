@@ -29,12 +29,12 @@ const initializeTask= () => {
     loadItemTask(); // Carga los datos de la tarea si existe un ID en la URL
 
     document.getElementById('return').addEventListener('click', () => {
-        document.location.href = '/index.html';  
+        document.location.href = '/to-do-list/index.html';
     });
 
     document.getElementById('send_task').addEventListener('click', () => {
         sendTask();
-        document.location.href = '/index.html';  
+        document.location.href = '/to-do-list/index.html';
     });
 };
 
