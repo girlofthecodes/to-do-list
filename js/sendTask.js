@@ -263,7 +263,7 @@ function getQueryParam(name) {
 async function loadItemTask (){
     const id = parseInt(getQueryParam('id'), 10); 
     if(id){
-        const response = await fetch('js/tasks.json');
+        const response = await fetch('/to-do-list/js/tasks.json');
         const data = await response.json(); 
         const task = data.find(t => t._id === id);
         if(task){

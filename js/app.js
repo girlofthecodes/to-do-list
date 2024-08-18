@@ -3,7 +3,7 @@ let tasks = [];
 //Carga el archivo JSON, rcupera los datos
 async function loadTasksJSON() {
     try {
-        const response = await fetch('js/tasks.json');
+        const response = await fetch('/to-do-list/js/tasks.json')
         const data = await response.json();
         tasks = data.map(task => new Task(task._task, task._detail, task._date, task._time));
     } catch (error) {
