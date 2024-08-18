@@ -141,9 +141,6 @@ function calendarAttachEventListener(){
     const date = document.getElementById('date');
     const container_calendar = document.getElementById('container-calendar'); 
 
-    console.log(date); 
-    console.log(container_calendar);
-
     date.addEventListener('click', () => {
         togglePopupVisibility(container_calendar);
     });
@@ -296,7 +293,6 @@ async function sendTask(){
 
     //const task = new Task(title, detail, date, '00:00');
     const task = new Task(title, detail, date, time, id || null);
-    console.log(task)
     const method = id ? 'PATCH' : 'POST'; // Determinar el método HTTP
     const url = id ? `/task?id=${id}` : '/task'; // Determinar la URL
 

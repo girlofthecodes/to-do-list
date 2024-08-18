@@ -1,3 +1,51 @@
 [
-
+  {
+    "_id": 1,
+    "_task": "CREATE",
+    "_detail": "Tarea creada para que se compruebe la funcionalidad CREATE ",
+    "_date": "20/08/2024",
+    "_time": "02:30"
+  },
+  {
+    "_id": 2,
+    "_task": "UPDATE",
+    "_detail": "Tarea creada para que se compruebe la funcionalidad UPDATE. Tarea ACTUALIZADA.",
+    "_date": "30/08/2024",
+    "_time": "15:55"
+  },
+  {
+    "_id": 3,
+    "_task": "DELETE",
+    "_detail": "Tarea creada para que se compruebe su funcionalidad DELETE.",
+    "_date": "23/08/2024",
+    "_time": "08:00"
+  }, 
+  {
+    "_id": 4,
+    "_task": "DELETE",
+    "_detail": "Tarea creada para que se compruebe su funcionalidad DELETE. Se eliminara la tarea con id=3",
+    "_date": "23/08/2024",
+    "_time": "08:00"
+  }, 
+  {
+    "_id": 5,
+    "_task": "Fecha Actual",
+    "_detail": "Tarea creada para que se compruebe que si la fecha es actual, esta se pintara de cierto color, avisando que ese dia es el ultimo para completarla",
+    "_date": "17/08/2024",
+    "_time": "17:45"
+  }, 
+  {
+    "_id": 6,
+    "_task": "Fecha Pasada",
+    "_detail": "Tarea creada para que se compruebe que si la fecha ya paso, esta se pintara de cierto color, avisando que el dia para cumplir la tarea ya vencio, por ende solo queda eliminarla o editarla",
+    "_date": "13/08/2024",
+    "_time": "17:00"
+  },
+  {
+    "_id": 5,
+    "_task": "Fecha Completada",
+    "_detail": "Tarea creada para marcarla como completa y ver su logica",
+    "_date": "27/08/2024",
+    "_time": "17:55"
+  }
 ]
